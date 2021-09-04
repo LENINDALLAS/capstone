@@ -1,10 +1,15 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import SignupInnovator from './components/SignupInnovator.js';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <Router>
+      <Switch>
+
+        <Route path='/signupInnovator' component={SignupInnovator} />
+      </Switch>
+    </Router>
   );
 }
 
