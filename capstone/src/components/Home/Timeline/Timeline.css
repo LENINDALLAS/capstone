@@ -1,0 +1,29 @@
+.submain{
+    background-color: #5CB85C;
+    margin-top:100px;
+}
+
+.timeline{
+    display: inline-flex;
+    margin: 50px;
+}
+
+.box img{
+    height:6rem;
+    width:6rem;
+    background-color:transparent;
+    border-radius:100px;
+    border:8px solid rgb(255, 255, 255);
+    right:0;
+    margin:30px;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+}
+
+.description{
+    text-align: center;
+    padding-top:20px;
+}
