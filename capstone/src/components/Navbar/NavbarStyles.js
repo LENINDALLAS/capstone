@@ -42,11 +42,13 @@ display: flex;
 align-items: center;
 list-style: none;
 text-align: center;
-margin-right: -4px;
-margin-top:-50px;
+/* margin-right: -4px;
+margin-top:-50px; */
 `;
 
 export const NavItem = styled.li`
-${'' /* height: 100px; */}
+/* border: 3px solid black; */
+/* margin-top: 10px; */
+
 `;
 

@@ -17,7 +17,7 @@ function Home() {
             <div className="main">
                 <div className="title">
                     <div className="leftside">
-                        <p className="description">Invent Ideas connect Innovators with Investors to bring new products to market.</p>
+                        <p className="description">We connect Innovators with Investors to bring new products to market.</p>
                         <div className="left">
                             <Button variant="contained">
                                 Investor

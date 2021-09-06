@@ -28,10 +28,10 @@ const Navbar = () => {
                     <NavLogo href="#"><img src={logo} alt="" /></NavLogo>
                     <NavMenu>
                         <NavItem>
-                            <Button variant="contained">Investor SignUp</Button>
+                            <Button className='navigation_button'>Investor SignUp</Button>
                         </NavItem>
                         <NavItem>
-                            <Button variant="contained">Innovator SignUp</Button>
+                            <Button className='navigation_button' >Innovator SignUp</Button>
                         </NavItem>
                         <NavItem>
                         </NavItem>
