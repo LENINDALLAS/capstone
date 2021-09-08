@@ -29,6 +29,8 @@
   margin: 0 auto !important;
   margin-top: 50px !important;
   transition: 0.7s !important;
+  color: #fff !important;
+  font-weight: 600 !important;
 }
 
 .MuiButton-contained:hover {
