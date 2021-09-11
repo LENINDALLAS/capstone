@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -16,8 +16,10 @@ import InputBase from "@material-ui/core/InputBase";
 import { purple } from "@material-ui/core/colors";
 import Button from '@material-ui/core/Button';
 import './Signup.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { innovatorSignup } from '../../redux/actions/signupActions';
+import Loading from '../loading/Loading.js';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -76,6 +78,8 @@ function SignupInnovator(props) {
 
     const dispatch = useDispatch();
 
+    const { enqueueSnackbar } = useSnackbar();
+
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -88,6 +92,27 @@ function SignupInnovator(props) {
     const [pincode, setPincode] = useState('');
     const [occupation, setOccupation] = useState('');
     const [document, setDocument] = useState('');
+
+    const userFromReducer = useSelector((state) => state.signupInnovator);
+
+    const handleSnackbar = (value, variant) => {
+        // console.log('from function', value)
+        enqueueSnackbar(value, { variant });
+    };
+
+    const { loading, user, userError } = userFromReducer;
+    //  console.log(userError, 'user')
+
+    if (user) {
+        props.history.push('/')
+    }
+
+    useEffect(() => {
+        if (userError) {
+            // console.log('user error in else if')
+            handleSnackbar('Signup was not successful, Please try again', 'error');
+        }
+    }, [userError])
 
 
     const classes = useStyles();
@@ -116,8 +141,9 @@ function SignupInnovator(props) {
             district: district,
             state: state,
             pincode: pincode,
-            occpation: occupation,
+            occupation: occupation,
             document: document,
+            userType: 'innovator'
         }
 
         dispatch(innovatorSignup(data));
@@ -142,6 +168,12 @@ function SignupInnovator(props) {
             })
 
             .catch((err) => console.log(err));
+    }
+
+    if (loading) {
+        return (
+            <Loading />
+        )
     }
 
     return (
@@ -288,11 +320,14 @@ function SignupInnovator(props) {
                     </Button>
 
                 </form>
-                <p className="alreadyHave">Already have an account ?
-                    <Link to='/signinInnovator'>
-                        Signin
-                    </Link>
-                </p>
+
+                <>
+                    <p className="alreadyHave">Already have an account ?
+                        <Link to='/signinInnovator'>
+                            Signin
+                        </Link>
+                    </p>
+                </>
             </div>
 
         </div>
