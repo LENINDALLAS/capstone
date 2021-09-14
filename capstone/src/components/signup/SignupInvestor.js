@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -16,9 +16,10 @@ import InputBase from "@material-ui/core/InputBase";
 import { purple } from "@material-ui/core/colors";
 import Button from '@material-ui/core/Button';
 import './Signup.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { investorSignup } from '../../redux/actions/signupActions';
-
+import Loading from '../loading/Loading.js';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -76,6 +77,8 @@ function SignupInvestor(props) {
 
     const dispatch = useDispatch();
 
+    const { enqueueSnackbar } = useSnackbar();
+
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -88,6 +91,27 @@ function SignupInvestor(props) {
     const [pincode, setPincode] = useState('');
     const [business, setBusiness] = useState('');
     const [document, setDocument] = useState('');
+
+
+    const userFromReducer = useSelector((state) => state.signupInvestor);
+
+    const handleSnackbar = (value, variant) => {
+        // console.log('from function', value)
+        enqueueSnackbar(value, { variant });
+    };
+
+    const { loading, user, userError } = userFromReducer;
+
+    useEffect(() => {
+        if (userError) {
+            // console.log('user error in else if')
+            handleSnackbar('Signup was not successful, Please try again', 'error');
+        } else if (user) {
+            handleSnackbar('Signup was successful', 'success');
+            props.history.push('/');
+        }
+        // eslint-disable-next-line
+    }, [userError, user])
 
 
     const classes = useStyles();
@@ -142,6 +166,12 @@ function SignupInvestor(props) {
             })
 
             .catch((err) => console.log(err));
+    }
+
+    if (loading) {
+        return (
+            <Loading />
+        )
     }
 
     return (

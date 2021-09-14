@@ -19,7 +19,7 @@ import './Signup.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { innovatorSignup } from '../../redux/actions/signupActions';
 import Loading from '../loading/Loading.js';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -103,16 +103,18 @@ function SignupInnovator(props) {
     const { loading, user, userError } = userFromReducer;
     //  console.log(userError, 'user')
 
-    if (user) {
-        props.history.push('/')
-    }
+
 
     useEffect(() => {
         if (userError) {
             // console.log('user error in else if')
             handleSnackbar('Signup was not successful, Please try again', 'error');
+        } else if (user) {
+            handleSnackbar('Signup was successful', 'success');
+            props.history.push('/');
         }
-    }, [userError])
+        // eslint-disable-next-line
+    }, [userError, user])
 
 
     const classes = useStyles();
