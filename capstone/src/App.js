@@ -11,6 +11,7 @@ import InvestorProfile from './components/investorProfile/InvestorProfile.js';
 import InnovatorProfile from './components/innovatorProfile/InnovatorProfile';
 import InvestorPage from './components/investorsPage/InvestorPage';
 import Ideapage from './components/idea/Ideapage';
+import ContactPage from './components/ContactPage/ContactPage';
 
 
 function App() {
@@ -28,8 +29,8 @@ function App() {
           <Route path='/innovatorProfile' component={InnovatorProfile} />
           <Route path='/investorPage' component={InvestorPage} />
           <Route path='/ideaPage' component={Ideapage} />
+          <Route path='/contactPage' exact component={ContactPage} />
         </SnackbarProvider>
-
       </Switch>
     </Router>
   );
