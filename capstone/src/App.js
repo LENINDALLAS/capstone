@@ -13,7 +13,6 @@ import InvestorPage from './components/investorsPage/InvestorPage';
 import Ideapage from './components/idea/Ideapage';
 import ContactPage from './components/ContactPage/ContactPage';
 
-
 function App() {
   return (
     <Router>
