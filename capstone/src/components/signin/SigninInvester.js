@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
     ThemeProvider,
@@ -9,8 +9,10 @@ import TextField from "@material-ui/core/TextField";
 import { purple } from "@material-ui/core/colors";
 import Button from '@material-ui/core/Button';
 import '../signup/Signup.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { investorSignin } from '../../redux/actions/signinActions';
+import Loading from '../loading/Loading';
+import { useSnackbar } from 'notistack';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +38,7 @@ function SigninInvestor(props) {
 
     const dispatch = useDispatch();
 
+    const { enqueueSnackbar } = useSnackbar();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -52,9 +55,32 @@ function SigninInvestor(props) {
         }
 
         dispatch(investorSignin(data));
+    };
+
+    const userFromReducer = useSelector((state) => state.signinInvestor);
+
+    const { user, userError, loading } = userFromReducer
+
+    const handleSnackbar = (value, variant) => {
+        // console.log('from function', value)
+        enqueueSnackbar(value, { variant });
+    };
+
+    useEffect(() => {
+        if (user) {
+            handleSnackbar('Signin was successful', 'success')
+            props.history.push('/')
+        } else if (userError) {
+            handleSnackbar('Signin was unsuccessful, please try again', 'error')
+        }
+    }, [user, userError])
+
+
+    if (loading) {
+        return (
+            <Loading />
+        )
     }
-
-
 
     return (
         <div className='formContainer'>

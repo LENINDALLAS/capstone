@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import Cube from '../cube/Cube'
 import Status from '../Home/Status'
 import ScrollUpButton from "react-scroll-up-button";
+import { Link } from 'react-router-dom';
 
 function Home() {
     return (
@@ -36,11 +37,15 @@ function Home() {
                             <p className="description">We connect Innovators with Investors to bring new products to market.</p>
                             <div className="left">
                                 <Button variant="contained">
-                                    Investor
-                            </Button>
+                                    <Link to='/signup-investor' className='globalLink'>
+                                        Investor
+                                    </Link>
+                                </Button>
                                 <Button variant="contained" >
-                                    Innovator
-                            </Button>
+                                    <Link to='/signup-innovator' className='globalLink'>
+                                        Innovator
+                                    </Link>
+                                </Button>
                             </div>
                         </div>
                         <div className="rightside">

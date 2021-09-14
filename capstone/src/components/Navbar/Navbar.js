@@ -6,9 +6,11 @@ import {
     NavItem,
     NavMenu,
 } from './NavbarStyles';
-import logo from '../img/inventIdeas-logos_black.png'
+import logo from '../img/inventIdeas-logos_black.png';
 import Button from '@material-ui/core/Button';
-import './Navbar.css'
+import './Navbar.css';
+import { Link } from 'react-router-dom';
+
 
 const Navbar = () => {
     const [colorChange, setColorchange] = useState(false);
@@ -25,13 +27,21 @@ const Navbar = () => {
         <>
             <Nav className={colorChange ? 'navbar colorChange' : 'navbar'}>
                 <NavContainer>
-                    <NavLogo href="#"><img src={logo} alt="" /></NavLogo>
+                    <NavLogo href="/"><img src={logo} alt="page_logo" /></NavLogo>
                     <NavMenu>
                         <NavItem>
-                            <Button className='navigation_button'>Investor SignUp</Button>
+                            <Button className='navigation_button'>
+                                <Link to='signup-investor' className='globalLink'>
+                                    Investor SignUp
+                                </ Link>
+                            </Button>
                         </NavItem>
                         <NavItem>
-                            <Button className='navigation_button' >Innovator SignUp</Button>
+                            <Button className='navigation_button' >
+                                <Link to='signup-innovator' className='globalLink'>
+                                    Innovator SignUp
+                                </ Link>
+                            </Button>
                         </NavItem>
                         <NavItem>
                         </NavItem>

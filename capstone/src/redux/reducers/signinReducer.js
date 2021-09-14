@@ -11,11 +11,14 @@ export const signinInnovatorReducer = (state = { loading: false }, action) => {
         case SIGNINFORINNOVATOR_SUCCESS:
             return {
                 ...state,
+                loading: false,
                 user: action.payload,
+
             }
         case SIGNINFORINNOVATOR_FAIL:
             return {
                 ...state,
+                loading: false,
                 userError: action.payload,
             }
         default:
@@ -33,11 +36,13 @@ export const signinInvestorReducer = (state = { loading: false }, action) => {
         case SIGNINFORINVESTOR_SUCCESS:
             return {
                 ...state,
+                loading: false,
                 user: action.payload,
             }
         case SIGNINFORINVESTOR_FAIL:
             return {
                 ...state,
+                loading: false,
                 userError: action.payload,
             }
         default:
