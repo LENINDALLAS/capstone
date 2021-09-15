@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import pic from '../img/boundary.png'
 import ImgSlider from '../Home/Caroussel/ImgSlider'
@@ -12,9 +12,12 @@ import Cube from '../cube/Cube'
 import Status from '../Home/Status'
 import ScrollUpButton from "react-scroll-up-button";
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { UPDATE_OWNER } from '../../redux/constants/owner'
 
 function Home() {
+
+    const dispatch = useDispatch();
 
     const userFromReducer = useSelector((state) => {
         let user = state.signupInnovator;
@@ -28,12 +31,15 @@ function Home() {
         return user
     });
 
-    // console.log(userFromReducer.user.data, 'userFrom Reducer variable')
-    if (userFromReducer.user) {
-        var { investor, innovator } = userFromReducer.user.data;
-        console.log(investor, 'user data');
-        console.log(innovator, 'user data');
-    };
+    useEffect(() => {
+
+        if (userFromReducer.user) {
+            dispatch({ type: UPDATE_OWNER, payload: userFromReducer.user.data })
+        }
+    }, [userFromReducer.user])
+
+    const [investor, setInvestor] = React.useState(userFromReducer.user?.data.investor);
+    const [innovator, setInnovator] = React.useState(userFromReducer.user?.data.investor)
 
     return (
         <>
