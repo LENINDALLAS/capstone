@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { investorSignup } from '../../redux/actions/signupActions';
 import Loading from '../loading/Loading.js';
 import { useSnackbar } from 'notistack';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -128,6 +130,7 @@ function SignupInvestor(props) {
         }
         if (pincode.length !== 6) {
             alert('Pincode should consists of 6 digits');
+            return;
         }
         // console.log('working')
         const data = {
@@ -165,7 +168,7 @@ function SignupInvestor(props) {
                 setPicture(data.secure_url)
             })
 
-            .catch((err) => console.log(err));
+            .catch((err) => alert('Image upload unsuccessful, Please try again.'));
     }
 
     if (loading) {
@@ -176,6 +179,7 @@ function SignupInvestor(props) {
 
     return (
         <div className='formContainer'>
+            <Navbar />
             <div className='formBlock'>
                 <form className={classes.root} onSubmit={(e) => handleSubmit(e)}>
                     <Avatar
@@ -318,12 +322,12 @@ function SignupInvestor(props) {
 
                 </form>
                 <p className="alreadyHave">Already have an account ?
-                    <Link to='/signinInvestor'>
+                    <Link to='/signin-investor'>
                         Signin
                     </Link>
                 </p>
             </div>
-
+            {/* <Footer /> */}
         </div>
     );
 }

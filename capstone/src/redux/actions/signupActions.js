@@ -12,27 +12,26 @@ import axios from 'axios';
 
 export const innovatorSignup = (data) => async (dispatch) => {
     dispatch({ type: SIGNUPFORINNOVATOR_REQUEST });
-    console.log(data)
+    // console.log(data)
     try {
         const user = await axios.post(`${deployLink}/innovator/signup`, data);
-        console.log(user)
+        // console.log(user)
         dispatch({ type: SIGNUPFORINNOVATOR_SUCCESS, payload: user });
     } catch (error) {
-        console.log(error.message)
+        // console.log(error.message)
         dispatch({ type: SIGNUPFORINNOVATOR_FAIL, payload: error });
     }
 }
 
 export const investorSignup = (data) => async (dispatch) => {
-    console.log(data)
+    // console.log(data)
     dispatch({ type: SIGNUPFORINVESTOR_REQUEST });
-    console.log(data)
     try {
         const user = await axios.post(`${deployLink}/investor/signup`, data);
-        console.log(user)
+        // console.log(user)
         dispatch({ type: SIGNUPFORINVESTOR_SUCCESS, payload: user });
     } catch (error) {
-        console.log(error.message)
+        // console.log(error.message)
         dispatch({ type: SIGNUPFORINVESTOR_FAIL, payload: error });
     }
 }

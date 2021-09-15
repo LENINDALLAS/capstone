@@ -31,15 +31,15 @@ const Navbar = () => {
                     <NavMenu>
                         <NavItem>
                             <Button className='navigation_button'>
-                                <Link to='signup-investor' className='globalLink'>
-                                    Investor SignUp
+                                <Link to='signin-investor' className='globalLink'>
+                                    Investor Login
                                 </ Link>
                             </Button>
                         </NavItem>
                         <NavItem>
                             <Button className='navigation_button' >
-                                <Link to='signup-innovator' className='globalLink'>
-                                    Innovator SignUp
+                                <Link to='signin-innovator' className='globalLink'>
+                                    Innovator Login
                                 </ Link>
                             </Button>
                         </NavItem>

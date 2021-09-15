@@ -44,14 +44,14 @@ export const signupInvestorReducer = (state = { loading: false }, action) => {
                 loading: true,
             }
         case SIGNUPFORINVESTOR_SUCCESS:
-            console.log('success', action, state)
+            // console.log('success', action, state)
             return {
                 ...state,
                 loading: false,
                 user: action.payload
             }
         case SIGNUPFORINVESTOR_FAIL:
-            console.log('fail', action, state)
+            // console.log('fail', action, state)
             return {
                 ...state,
                 loading: false,

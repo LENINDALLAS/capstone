@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { innovatorSignup } from '../../redux/actions/signupActions';
 import Loading from '../loading/Loading.js';
 import { useSnackbar } from 'notistack';
+import Footer from '../Footer/Footer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -132,6 +133,7 @@ function SignupInnovator(props) {
         }
         if (pincode.length !== 6) {
             alert('Pincode should consists of 6 digits');
+            return;
         }
         // console.log('working')
         const data = {
@@ -170,7 +172,7 @@ function SignupInnovator(props) {
                 setPicture(data.secure_url)
             })
 
-            .catch((err) => console.log(err));
+            .catch((err) => alert('Image upload unsuccessful, Please try again.'));
     }
 
     if (loading) {
@@ -329,14 +331,16 @@ function SignupInnovator(props) {
 
                     <>
                         <p className="alreadyHave">Already have an account ?
-                            <Link to='/signinInnovator'>
+                            <Link to='/signin-innovator'>
                                 Signin
                             </Link>
                         </p>
                     </>
+
                 </div>
 
             </div>
+            {/* <Footer /> */}
         </>
     );
 }

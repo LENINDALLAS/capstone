@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { innovatorSignin } from '../../redux/actions/signinActions';
 import Loading from '../loading/Loading';
 import { useSnackbar } from 'notistack';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,6 +90,7 @@ function SigninInnovator(props) {
 
     return (
         <div className='formContainer'>
+            <Navbar />
             <div className='formBlock'>
                 <form className={classes.root} onSubmit={(e) => handleSubmit(e)}>
 
@@ -128,12 +131,12 @@ function SigninInnovator(props) {
 
                 </form>
                 <p className="alreadyHave">Dont have an account ?
-                    <Link to='/signupInnovator'>
+                    <Link to='/signup-innovator'>
                         Signup
                     </Link>
                 </p>
             </div>
-
+            {/* <Footer /> */}
         </div>
     );
 }
