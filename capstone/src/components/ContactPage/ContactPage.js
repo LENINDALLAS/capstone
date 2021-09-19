@@ -17,6 +17,7 @@ function ContactPage(props) {
 
     useEffect(() => {
         setIdeaItem(user)
+        // eslint-disable-next-line
     }, [props.match.params.id])
 
     return (

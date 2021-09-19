@@ -18,6 +18,7 @@ function Ideapage(props) {
 
     useEffect(() => {
         setIdeaItem(idea)
+        // eslint-disable-next-line 
     }, [props.match.params.id])
 
     // console.log(ideaItem[0].id)

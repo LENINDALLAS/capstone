@@ -36,10 +36,11 @@ function Home() {
         if (userFromReducer.user) {
             dispatch({ type: UPDATE_OWNER, payload: userFromReducer.user.data })
         }
+        // eslint-disable-next-line
     }, [userFromReducer.user])
 
-    const [investor, setInvestor] = React.useState(userFromReducer.user?.data.investor);
-    const [innovator, setInnovator] = React.useState(userFromReducer.user?.data.innovator);
+    const [investor] = React.useState(userFromReducer.user?.data.investor);
+    const [innovator] = React.useState(userFromReducer.user?.data.innovator);
 
     return (
         <>
@@ -47,8 +48,9 @@ function Home() {
                 <Navbar />
                 <Status />
                 <div style={{ overflowY: "scroll" }}></div>
-                <ScrollUpButton ContainerClassName="MyOverRideClass"
-                    TransitionClassName="MyOverRideTransitionedClass"
+                <ScrollUpButton
+                    //  ContainerClassName="MyOverRideClass"
+                    //     TransitionClassName="MyOverRideTransitionedClass"
                     StopPosition={0}
                     ShowAtPosition={150}
                     EasingType='easeOutCubic'
