@@ -14,6 +14,13 @@ import ScrollUpButton from "react-scroll-up-button";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_OWNER } from '../../redux/constants/owner'
+import { Bounce, Fade, Flip, LightSpeed, Slide } from 'react-reveal'
+import undraw1 from '../img/undraw1-removebg-preview.png'
+import undraw2 from '../img/undraw2-removebg-preview.png'
+import undraw3 from '../img/undraw3-removebg-preview.png'
+import undraw4 from '../img/undraw4-removebg-preview.png'
+import undraw5 from '../img/undraw5-removebg-preview.png'
+import undraw6 from '../img/undraw6-removebg-preview.png'
 
 function Home() {
 
@@ -63,7 +70,9 @@ function Home() {
                 <div className="main">
                     <div className="title">
                         <div className="leftside">
-                            <p className="description">We connect Innovators with Investors to bring new products to market.</p>
+                            <Fade left>
+                                <p className="description">We connect Innovators with Investors to bring new products to market.</p>
+                            </Fade>
                             <div className="left">
                                 <Button variant="contained">
                                     <Link to={investor ? '/investor-page' : '/signin-investor'} className='globalLink'>
@@ -86,6 +95,30 @@ function Home() {
                     </div>
                     <Timeline />
                     <Cube />
+                    <div className="undraw">
+                        <Flip bottom cascade>
+                            <p className="undraw-name">The Age of             Invention </p>
+                        </Flip>
+                        <Slide bottom>
+                            <img className="undrawImg u1" src={undraw2} alt="" />
+                        </Slide>
+                        <Slide bottom>
+                            <img className="undrawImg u2" src={undraw1} alt="" />
+                        </Slide>
+                        <Slide left>
+                            <img className="undrawImg u3" src={undraw4} alt="" />
+                        </Slide>
+                        <Slide bottom>
+                            <img className="undrawImg u4" src={undraw3} alt="" />
+                        </Slide>
+                        <Slide right>
+                            <img className="undrawImg u5" src={undraw5} alt="" />
+                        </Slide>
+                        <Slide left>
+                            <img className="undrawImg u6" src={undraw6} alt="" />
+                        </Slide>
+                        <p className="undraw-name2">Turn Ideas Into             Reality </p>
+                    </div>
                     <ImgSlider />
                     <br /><br />
                 </div>
