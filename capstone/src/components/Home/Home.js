@@ -117,7 +117,11 @@ function Home() {
                         <Slide left>
                             <img className="undrawImg u6" src={undraw6} alt="" />
                         </Slide>
-                        <p className="undraw-name2">Turn Ideas Into             Reality </p>
+                        <div className="undraw__name2">
+                            <p>
+                                Turn Ideas Into <br />Reality
+                            </p>
+                        </div>
                     </div>
                     <ImgSlider />
                     <br /><br />
