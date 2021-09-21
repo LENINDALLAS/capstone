@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from '../Navbar/Navbar';
 import '../ideaShort/IdeaShort.css';
-import innovatorItems from '../ideaShort/data';
 import IdeaShort from '../ideaShort/IdeaShort';
 import Footer from '../Footer/Footer.js';
 // import { chipData } from '../chipComponent/chipData';
@@ -61,6 +60,8 @@ function InvestorsPage() {
     if (posts) {
         var data = posts.slice(startIndex, endIndex);
     }
+
+
 
     if (loading) {
         return (

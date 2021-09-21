@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './InvestorProfile.css';
 import Avatar from "@material-ui/core/Avatar";
-import { user } from './dataInvestorProfile.js';
 import ProfileIdea from '../profileIdea/ProfileIdea.js';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
@@ -14,7 +13,7 @@ function InvestorProfile(props) {
     const [picture, setPicture] = useState('');
     // console.log('user', user[0].name);
 
-    const { investorProfile, loading } = useSelector((state) => state.investorProfile);
+    const { investorProfile } = useSelector((state) => state.investorProfile);
     // console.log(investorProfile, loading, 'data in investor profile');
 
     const { name, profile_picture, interested_ideas, invested_ideas } = investorProfile;
@@ -27,7 +26,7 @@ function InvestorProfile(props) {
     }, [profile_picture]);
 
     return (
-        <div>
+        <div className="profileScreen">
             <Navbar />
             {
                 investorProfile &&

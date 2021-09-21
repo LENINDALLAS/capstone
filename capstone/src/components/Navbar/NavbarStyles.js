@@ -21,7 +21,7 @@ padding: 0 24px;
 
 `;
 
-export const NavLogo = styled.a`
+export const NavLogo = styled.div`
 color: #7d2ae8;
 justify-self: flex-start;
 cursor: pointer;

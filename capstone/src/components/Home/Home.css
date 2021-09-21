@@ -1,7 +1,10 @@
 .main {
   /* background-color:#f8ecf8 ; */
   margin: 10px;
+  background-image: url(../img/bg.jpg);
+  background-repeat: no-repeat;
 }
+
 .leftside {
   display: flex;
   padding-top: 10px;

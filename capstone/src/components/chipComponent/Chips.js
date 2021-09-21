@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 // import CancelIcon from '@mui/icons-material/Cancel';
 import { Avatar } from '@material-ui/core';
 import { chipData } from './chipData.js';
-import { useDispatch } from 'react-redux';
-import { getAllIdea } from '../../redux/actions/getAllIdeaActions.js';
+// import { useDispatch } from 'react-redux';
+// import { getAllIdea } from '../../redux/actions/getAllIdeaActions.js';
 
-function Chips(props) {
+function Chips() {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [allCategory, setAllCategory] = useState(chipData);
     const [filteredCategory, setFilteredCategory] = useState([]);
@@ -24,6 +24,7 @@ function Chips(props) {
     const addCategory = (item) => {
         setAllCategory(allCategory.filter((tag) => tag !== item));
         setFilteredCategory([...filteredCategory, item]);
+        // console.log(filteredCategory);
     }
 
     const removeCategory = (item) => {
@@ -34,6 +35,8 @@ function Chips(props) {
     // console.log(allCategory);
 
     // console.log(filteredCategory);
+
+
 
     return (
         <div>
@@ -64,7 +67,7 @@ function Chips(props) {
                                 clickable
                                 color="primary"
                                 avatar={<Avatar>{item[0]}</Avatar>}
-                                onClick={() => addCategory(item)}
+                                onClick={() => (addCategory(item))}
                             />
                             <br /><br />
                         </div>

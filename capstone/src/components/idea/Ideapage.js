@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './IdeaPage.css'
 import Nav from '../Navbar/Navbar'
 import ImgSlider from './IdeaPageCarousel.js';
-import avatar from '../img/lenin.jpeg'
 import Animation from '../animation/Animation';
 import { Button } from '@material-ui/core';
-import data from '../ideaShort/data.js';
 import { Link } from 'react-router-dom';
 import { Fade } from 'react-reveal';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../loading/Loading';
+import { addToInvestedIdea } from '../../redux/actions/investerInterestedInvestedActions';
 
 function Ideapage(props) {
 
     const { ideaById: data, loading } = useSelector((state) => state.getOneIdeaById);
     // console.log(data, 'data user by id');
+    const dispatch = useDispatch();
 
-    // const idea = data.filter((item) => item.id === props.match.params.id);
-
-    // console.log(idea, ' ideas')
-
-    // const [ideaItem, setIdeaItem] = useState(idea)
-
-    // useEffect(() => {
-    //     setIdeaItem(idea)
-    // eslint-disable-next-line 
-    // }, [props.match.params.id])
-
-    // console.log(ideaItem[0]?.image)
+    const handleInvested = (id) => {
+        // console.log(id, 'invested');
+        dispatch(addToInvestedIdea(id))
+    }
 
     if (loading) {
         return (
@@ -66,7 +58,7 @@ function Ideapage(props) {
 
                         <p align="center">{data.description}</p>
                         <div className="contact">
-                            <Button className='navigation_button' >
+                            <Button className='navigation_button' onClick={() => handleInvested(data._id)} >
                                 <Link to={`/contact-page/${data._id}`} className='globalLink'>
                                     Contact
                                 </Link>

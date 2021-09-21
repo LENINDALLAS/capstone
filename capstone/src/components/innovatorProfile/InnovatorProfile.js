@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../investorProfile/InvestorProfile.css';
-import { user } from './dataInnovatorProfile.js';
 import Avatar from "@material-ui/core/Avatar";
 import ProfileIdea from '../profileIdea/ProfileIdea.js';
 import Navbar from '../Navbar/Navbar';
@@ -14,7 +13,7 @@ function InnovatorProfile(props) {
     const [picture, setPicture] = useState('');
     // console.log('user', user[0].name);
 
-    const { innovatorProfile, loading } = useSelector((state) => state.innovatorProfile);
+    const { innovatorProfile } = useSelector((state) => state.innovatorProfile);
     // console.log(innovatorProfile, loading, 'data in innovator profile');
 
     const { name, profile_picture, ideas } = innovatorProfile;

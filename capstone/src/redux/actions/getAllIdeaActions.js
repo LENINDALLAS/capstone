@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    GETALLCATEGORY_REQUEST,
+    // GETALLCATEGORY_REQUEST,
     GETALLIDEA_FAIL,
     GETALLIDEA_REQUEST,
     GETALLIDEA_SUCCESS,
@@ -48,7 +48,7 @@ export const getOneIdeaById = (id) => async (dispatch, getState) => {
             }
         });
         dispatch({ type: GETONEIDEABYID_SUCCESS, payload: data });
-        console.log(data, 'getOneIdeaById success');
+        // console.log(data, 'getOneIdeaById success');
     } catch (error) {
 
         // console.log(error, 'getOneIdeaById')
@@ -56,20 +56,20 @@ export const getOneIdeaById = (id) => async (dispatch, getState) => {
     }
 }
 
-export const getAllCategory = () => async (dispatch, getState) => {
-    const state = getState();
-    const { token } = state.owner.user;
-    console.log(token, 'get category actions');
-    dispatch({ type: GETALLCATEGORY_REQUEST });
+// export const getAllCategory = () => async (dispatch, getState) => {
+//     const state = getState();
+//     const { token } = state.owner.user;
+//     console.log(token, 'get category actions');
+//     dispatch({ type: GETALLCATEGORY_REQUEST });
 
-    try {
-        const allCategory = await axios.get('route', {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        })
-        console.log(allCategory, 'get all category actions success')
-    } catch (error) {
-        console.log(error)
-    }
-};
+//     try {
+//         const allCategory = await axios.get('route', {
+//             headers: {
+//                 authorization: `Bearer ${token}`,
+//             }
+//         })
+//         console.log(allCategory, 'get all category actions success')
+//     } catch (error) {
+//         console.log(error)
+//     }
+// };

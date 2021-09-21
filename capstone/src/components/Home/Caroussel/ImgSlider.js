@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import p1 from '../../gifs/page1.gif';
 import p2 from '../../gifs/page2.gif';
 import p3 from '../../gifs/page3.gif';
-import p4 from '../../gifs/page4.gif';
 import '../Caroussel/Carousel.css'
 import { Zoom } from "react-reveal";
 
@@ -35,9 +34,6 @@ export default class PauseOnHover extends Component {
           </div>
           <div>
             <img src={p3} alt="" />
-          </div>
-          <div>
-            <img src={p4} alt="" />
           </div>
         </Slider>
       </div>

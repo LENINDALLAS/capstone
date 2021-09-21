@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import './ContactPage.css'
 import Animation from '../animation/Animation'
@@ -7,7 +7,6 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import CallIcon from '@material-ui/icons/Call';
 import EmailIcon from '@material-ui/icons/Email';
-import data from '../ideaShort/data.js';
 import Zoom from 'react-reveal/Zoom';
 import { useSelector } from 'react-redux';
 

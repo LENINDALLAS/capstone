@@ -6,6 +6,8 @@
   align-items: center;
   font-family: "roboto", sans-serif;
   perspective: 1000px;
+  background-image: url(../img/bg.jpg);
+  background-repeat: no-repeat;
 }
 
 .card {
@@ -133,10 +135,9 @@
 }
 
 @media (max-width: 767px) {
- .card{
-   display:none;
- }
+  .card {
+    display: none;
+  }
 }
 @media (max-width: 574px) {
- 
 }

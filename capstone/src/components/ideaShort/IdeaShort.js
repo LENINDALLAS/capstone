@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getOneIdeaById } from '../../redux/actions/getAllIdeaActions';
-import { addToInterestedIdeaOfInnovator } from '../../redux/actions/investerInterestedInvestedActions';
+import { addToInterestedIdea } from '../../redux/actions/investerInterestedInvestedActions';
 
 function IdeaShort({ innovatorItems }) {
     // console.log(innovatorItems, 'idea short sliced items')
@@ -19,8 +19,8 @@ function IdeaShort({ innovatorItems }) {
     }
 
     const handleInterested = (id) => {
-        console.log(id, 'interested')
-        dispatch(addToInterestedIdeaOfInnovator(id));
+        // console.log(id, 'interested')
+        dispatch(addToInterestedIdea(id));
     }
 
     return (
@@ -37,7 +37,7 @@ function IdeaShort({ innovatorItems }) {
                                 <div className="idea-intrested">
                                     <Button className="intrested" variant="contained" onClick={() => handleInterested(items._id)}>
                                         <Link to={`/idea-page/${items._id}`} className='globalLink' onClick={() => getIdeaById(items._id)}>
-                                            Intrested
+                                            Interested
                                         </Link>
                                     </Button>
                                 </div>

@@ -38,7 +38,7 @@ const Navbar = () => {
             // console.log('innovator for innovator profile');
             dispatch(getInnovatorProfile());
         }
-
+        // eslint-disable-next-line
     }, [investor, innovator])
 
     const changeNavbarColor = () => {
@@ -74,8 +74,8 @@ const Navbar = () => {
                             <img src={logo} alt="page_logo" />
                         </NavLogo>
                     </Link>
-                    <NavMenu>
-                        <NavItem>
+                    <NavMenu >
+                        <NavItem style={owner.user ? ({ 'display': 'block' }) : ({ 'display': 'none' })}>
                             <Button className='navigation_button' >
                                 <Link to={innovator ? '/innovator-profile' : investor ? '/investor-profile' : '/'} onClick={() => handleProfile()} className='globalLink'>
                                     Profile
