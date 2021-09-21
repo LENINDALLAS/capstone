@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Form3.css';
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -7,11 +7,11 @@ import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
 import { innovatorForm3 } from '../../redux/actions/innovatorFormActions';
 
-function Form3(props) {
+function Form3({ ideaId }) {
 
     const dispatch = useDispatch();
 
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         patent: false,
         pendingPatent: false,
         comeUpWithInvention: false,
@@ -31,6 +31,9 @@ function Form3(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const data = state;
+        data.ideaId = ideaId
+        console.log(data, 'form 3 idea id ');
         console.log(state, 'form 3')
         dispatch(innovatorForm3(state));
     };

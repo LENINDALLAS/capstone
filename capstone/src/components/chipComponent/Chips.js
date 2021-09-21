@@ -14,12 +14,12 @@ function Chips(props) {
     const [filteredCategory, setFilteredCategory] = useState([]);
 
 
-    useEffect(() => {
-        const filter = filteredCategory.join(',');
-        if (filter) {
-            dispatch(getAllIdea(filter));
-        };
-    }, [filteredCategory, dispatch]);
+    // useEffect(() => {
+    //     const filter = filteredCategory.join(',');           Todo: have a separate route as it clears the chip after the dispatch
+    //     if (filter) {
+    //         dispatch(getAllIdea(filter));
+    //     };
+    // }, [filteredCategory, dispatch]);
 
     const addCategory = (item) => {
         setAllCategory(allCategory.filter((tag) => tag !== item));

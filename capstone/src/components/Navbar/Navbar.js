@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Nav,
     NavContainer,
@@ -12,6 +12,8 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeOwner } from '../../redux/actions/owner';
+import { getInvestorProfile } from '../../redux/actions/investorProfileActions';
+import { getInnovatorProfile } from '../../redux/actions/innovatorProfileActions';
 
 
 const Navbar = () => {
@@ -26,6 +28,18 @@ const Navbar = () => {
         // console.log('investor nav', investor)
         // console.log('innovator nav', innovator)
     }
+
+    useEffect(() => {
+        if (investor) {
+            // console.log('investor for investor profile');
+            dispatch(getInvestorProfile());
+        }
+        if (innovator) {
+            // console.log('innovator for innovator profile');
+            dispatch(getInnovatorProfile());
+        }
+
+    }, [investor, innovator])
 
     const changeNavbarColor = () => {
         if (window.scrollY >= 80) {

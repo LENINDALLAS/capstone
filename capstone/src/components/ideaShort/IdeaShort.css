@@ -24,22 +24,20 @@
   height: 25px !important;
 }
 
-.column-right {
-  height: 50%;
-  width: 80%;
-  /* padding: 10px; */
-  align-items: center;
-  text-align: center;
-  margin-left: 10%;
-  margin-bottom: 30px;
+.ideaShortColumRight {
+  position: inherit;
+  margin-left: 14%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .hovering {
   padding: 20px;
   border: 3px solid gray;
   border-radius: 20px;
-  margin-bottom: 5px;
+  margin: 1.5%;
   box-shadow: 0 1px 3px rgb(235, 224, 224), 0 1px 2px rgb(253, 251, 251);
+  width: 47%;
 }
 
 .hovering:hover {

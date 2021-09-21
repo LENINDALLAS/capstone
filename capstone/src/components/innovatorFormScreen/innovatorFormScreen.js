@@ -10,6 +10,7 @@ import Form2 from '../accordian2/Form2.js';
 import Form3 from '../accordian3/Form3.js';
 import Navbar from '../Navbar/Navbar.js';
 import Footer from '../Footer/Footer.js';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function InnovatorForm(props) {
+
+    const ideaId = useSelector((state) => {
+        if (state.innovatorForm1.form1) {
+            return state.innovatorForm1.form1.idea._id
+        }
+    }
+    );
+    // console.log(ideaId, 'innovatorForm screen ideaid');
+
     const classes = useStyles();
 
     return (
@@ -73,7 +83,7 @@ function InnovatorForm(props) {
                     </AccordionSummary>
                     <AccordionDetails className={classes.innerContainer}>
                         <div className="accordianContainer">
-                            <Form2 />
+                            <Form2 ideaId={ideaId} />
                         </div>
                     </AccordionDetails>
                 </Accordion>
@@ -87,7 +97,7 @@ function InnovatorForm(props) {
                     </AccordionSummary>
                     <AccordionDetails className={classes.innerContainer}>
                         <div className="accordianContainer">
-                            <Form3 />
+                            <Form3 ideaId={ideaId} />
                         </div>
                     </AccordionDetails>
                 </Accordion>

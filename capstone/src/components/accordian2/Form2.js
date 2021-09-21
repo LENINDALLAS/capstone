@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Form2.css';
 import {
     makeStyles,
@@ -66,13 +66,24 @@ const BootstrapInput = withStyles((theme) => ({
     }
 }))(InputBase);
 
-function Form2() {
+function Form2({ ideaId }) {
 
     const classes = useStyles();
 
     const dispatch = useDispatch();
 
     const [images, setImages] = useState([]);
+
+    const id = useRef('');
+
+    useEffect(() => {
+        if (ideaId) {
+            id.current = ideaId
+        }
+    }, [ideaId]);
+
+    // console.log(id.current, 'form 2 idea Id');
+
     // console.log(images)
     const handleImage = async (value) => {
 
@@ -89,11 +100,11 @@ function Form2() {
             .then((res) => res.json())
             .then(async (data) => {
                 // console.log('cloudinary', data.secure_url);
-                const picture = {
-                    img: data.secure_url
-                }
+                // const picture = {
+                //     img: data.secure_url
+                // }
 
-                setImages([...images, picture]);
+                setImages([...images, data.secure_url]);
             })
 
             .catch((err) => alert('Image upload not successful, try again.'));
@@ -101,8 +112,12 @@ function Form2() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(images)
-        dispatch(innovatorForm2);
+        const data = {
+            image: images,
+            ideaId: id.current
+        }
+        console.log(data)
+        dispatch(innovatorForm2(data));
     };
 
 
@@ -111,8 +126,8 @@ function Form2() {
             <div className={classes.root}>
                 <ImageList rowHeight={160} className={classes.imageList} cols={3}>
                     {images && images.map((item) => (
-                        <ImageListItem key={item.img} cols={item.cols || 1}>
-                            <img src={item.img} alt={item.img} />
+                        <ImageListItem key={item} cols={item || 1}>
+                            <img src={item} alt={item} />
                         </ImageListItem>
                     ))}
                 </ImageList>

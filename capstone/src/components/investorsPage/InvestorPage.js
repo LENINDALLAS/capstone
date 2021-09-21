@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Nav from '../Navbar/Navbar';
 import '../ideaShort/IdeaShort.css';
 import innovatorItems from '../ideaShort/data';
@@ -9,18 +9,21 @@ import Chips from '../chipComponent/Chips';
 import Pagination from '../pagination/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllIdea } from '../../redux/actions/getAllIdeaActions';
+import Loading from '../loading/Loading.js';
 
 let nos = [];
 function InvestorsPage() {
 
     const dispatch = useDispatch();
 
-    // const innovatorItems = useSelector((state) => state.getAllIdea.allIdea);
-    // console.log(innovatorItems, 'investor page getAllIdea')
+    const { loading, allIdea } = useSelector((state) => state.getAllIdea);
+    // console.log(allIdea, loading, 'investor page getAllIdea')
 
-    const [posts] = useState(innovatorItems);
+    const [posts, setPosts] = useState(allIdea);
     const [no, setNo] = useState(1);
     const [page, setPage] = useState([]);
+    // const [data, setData] = useState('');
+    // console.log(data, 'investor page dta');
 
     useEffect(() => {
         dispatch(getAllIdea());
@@ -34,7 +37,9 @@ function InvestorsPage() {
         if (noOfPages) {
             renderNumber(noOfPages)
         }
-    }, [posts])
+        setPosts(allIdea)
+    }, [posts, allIdea])
+
 
     const renderNumber = (noOfPages) => {
         nos = []
@@ -50,10 +55,17 @@ function InvestorsPage() {
         window.scroll(0, 0);
     };
 
+
     const endIndex = no * 10;
     const startIndex = endIndex - 10;
     if (posts) {
         var data = posts.slice(startIndex, endIndex);
+    }
+
+    if (loading) {
+        return (
+            <Loading />
+        )
     }
 
     return (
@@ -61,14 +73,7 @@ function InvestorsPage() {
             <Nav />
             <div className="">
                 <div className="column-left">
-                    {/* {
-                        chipData.map((item, idx) => {
-                            return (
-                                <div>
-                                    <Chips key={idx} item={item} />
-                                </div>
-                            )
-                        })} */}
+
                     <Chips />
                 </div>
                 <div className="column-right">

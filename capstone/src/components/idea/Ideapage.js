@@ -1,73 +1,80 @@
 import React, { useState, useEffect } from 'react'
 import './IdeaPage.css'
 import Nav from '../Navbar/Navbar'
-import ImgSlider from '../Home/Caroussel/AliceCarousel'
+import ImgSlider from './IdeaPageCarousel.js';
 import avatar from '../img/lenin.jpeg'
 import Animation from '../animation/Animation';
 import { Button } from '@material-ui/core';
 import data from '../ideaShort/data.js';
 import { Link } from 'react-router-dom';
-import { Fade, Zoom } from 'react-reveal';
+import { Fade } from 'react-reveal';
+import { useSelector } from 'react-redux';
+import Loading from '../loading/Loading';
 
 function Ideapage(props) {
 
-    const idea = data.filter((item) => item.id === props.match.params.id);
+    const { ideaById: data, loading } = useSelector((state) => state.getOneIdeaById);
+    // console.log(data, 'data user by id');
+
+    // const idea = data.filter((item) => item.id === props.match.params.id);
 
     // console.log(idea, ' ideas')
 
-    const [ideaItem, setIdeaItem] = useState('')
+    // const [ideaItem, setIdeaItem] = useState(idea)
 
-    useEffect(() => {
-        setIdeaItem(idea)
-        // eslint-disable-next-line 
-    }, [props.match.params.id])
+    // useEffect(() => {
+    //     setIdeaItem(idea)
+    // eslint-disable-next-line 
+    // }, [props.match.params.id])
 
-    // console.log(ideaItem[0].id)
+    // console.log(ideaItem[0]?.image)
+
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
 
 
     return (
         <div>
             <Nav />
-            {/* <div className="idea"> */}
+            {/* {
+                console.log(data.title, 'idea page title'),
+                console.log(data.description, 'idea page description'),
+                console.log(data.image, 'idea page image'),
+                console.log(data._id, 'idea page id'),
+                console.log(data.created_by.name, 'idea page name'),
+                console.log(data.created_by.profile_picture, 'idea page'),
+                console.log(data.createdAt.slice(0, 10), 'idea page date')
 
-            {/* <div className="idea-contents">
-                    <img alt="avatar" src={avatar} className='ideaImage' />
+            } */}
 
-                    <h2 className="name">Name:<span>Lenin Dallas</span></h2>
-                    <h2 className="date">Date:9/9/21</h2>
-                    <h1 className="idea-title">Innovate</h1>
-                </div>
-                <ImgSlider />
-                <h3>Description:</h3>
-                <p> It is a long established fact that a reader will be distracted by the readable content of a page
-                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution of letters, as opposed to using 'Content here, content here', making it look like
-                    readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
-                    their default model text, and a search for 'lorem ipsum' will uncover many web sites still in
-                    their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
-                    purpose (injected humour and the like).</p>
-                <div className="contact">
-                    <Button className='navigation_button' >Contact</Button>
-                </div>
-            </div> */}
+
             <div className="idea" >
-                <Fade top>
-                    <div className="idea-contents">
-                        <img alt="avatar" src={avatar} className='ideaImage' />
-                        <h2 className="name">Name:{ideaItem[0]?.name}</h2>
-                        <h2 className="date">Date:{ideaItem[0]?.date}</h2>
-                    </div>
-                    <h1 className="idea-title" align="center">{ideaItem[0]?.title}</h1>
-                    <ImgSlider />
-                    <p align="center">{ideaItem[0]?.description}</p>
-                    <div className="contact">
-                        <Button className='navigation_button' >
-                            <Link to={`/contact-page/${ideaItem[0]?.id}`} className='globalLink'>
-                                Contact
-                        </Link>
-                        </Button>
-                    </div>
-                </Fade>
+                {data &&
+                    <Fade top>
+                        <div className="idea-contents">
+                            <img alt="avatar" src={data.created_by.profile_picture} className='ideaImage' />
+                            <h2 className="name">Name:{data.created_by.name}</h2>
+                            <h2 className="date">Date:{data.createdAt.slice(0, 10)}</h2>
+                        </div>
+                        <h1 className="idea-title" align="center">{data.title}</h1>
+                        <div className="image__container__idea">
+                            <ImgSlider innovatorItems={data.image} />
+                        </div>
+
+                        <p align="center">{data.description}</p>
+                        <div className="contact">
+                            <Button className='navigation_button' >
+                                <Link to={`/contact-page/${data._id}`} className='globalLink'>
+                                    Contact
+                                </Link>
+                            </Button>
+                        </div>
+                    </Fade>
+                }
+
             </div>
             <Animation />
         </div>

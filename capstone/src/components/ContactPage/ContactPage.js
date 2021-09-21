@@ -9,16 +9,13 @@ import CallIcon from '@material-ui/icons/Call';
 import EmailIcon from '@material-ui/icons/Email';
 import data from '../ideaShort/data.js';
 import Zoom from 'react-reveal/Zoom';
+import { useSelector } from 'react-redux';
 
 function ContactPage(props) {
 
-    const user = data.filter((item) => item.id === props.match.params.id);
+    const { ideaById: data } = useSelector((state) => state.getOneIdeaById);
+    // console.log(data, 'data user by id contact page');
 
-    const [ideaItem, setIdeaItem] = useState('')
-
-    useEffect(() => {
-        setIdeaItem(user)
-    }, [props.match.params.id])
 
     return (
         <div>
@@ -36,26 +33,40 @@ function ContactPage(props) {
                         </div>
                     </div>
                 </div>
-                <Zoom top cascade>
-                    <div className="contactInfo">
-                        <div className="contact-content">
-                            <EmojiObjectsIcon className="icons" /> <p>Idea : {ideaItem[0]?.title}</p>
-                        </div>
-                        <div className="contact-content">
-                            <DescriptionIcon className="icons" /> <p>Name : {ideaItem[0]?.name}</p>
-                        </div>
-                        <div className="contact-content">
-                            <EmailIcon className="icons" /> <p>Email : {ideaItem[0]?.email}</p>
-                        </div>
-                        <div className="contact-content">
-                            <CallIcon className="icons" />  <p>Phone Number : {ideaItem[0]?.mobileno}</p>
-                        </div>
-                        <div className="contact-content">
+                {/* {
+                    console.log(data.title, 'title'),
+                    console.log(data.created_by.name, 'name'),
+                    console.log(data.created_by.email, 'email'),
+                    console.log(data.created_by.mobileno, 'mobile'),
+                    console.log(data.created_by.city, data.created_by.district, data.created_by.pincode, data.created_by.state, 'address')
 
-                            <ContactMailIcon className="icons" />  <p>Address : {ideaItem[0]?.address}</p>
+
+
+
+                } */}
+                {
+                    data &&
+                    <Zoom top cascade>
+                        <div className="contactInfo">
+                            <div className="contact-content">
+                                <EmojiObjectsIcon className="icons" /> <p>Idea : {data.title}</p>
+                            </div>
+                            <div className="contact-content">
+                                <DescriptionIcon className="icons" /> <p>Name : {data.created_by.name}</p>
+                            </div>
+                            <div className="contact-content">
+                                <EmailIcon className="icons" /> <p>Email : {data.created_by.email}</p>
+                            </div>
+                            <div className="contact-content">
+                                <CallIcon className="icons" />  <p>Phone Number : {data.created_by.mobileno}</p>
+                            </div>
+                            <div className="contact-content">
+
+                                <ContactMailIcon className="icons" />  <p>Address : {`${data.created_by.city}, ${data.created_by.district}, ${data.created_by.pincode}, ${data.created_by.state}`}</p>
+                            </div>
                         </div>
-                    </div>
-                </Zoom>
+                    </Zoom>
+                }
             </div>
             <br />
             <Animation />

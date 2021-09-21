@@ -14,7 +14,7 @@ import ScrollUpButton from "react-scroll-up-button";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_OWNER } from '../../redux/constants/owner'
-import { Bounce, Fade, Flip, LightSpeed, Slide } from 'react-reveal'
+import { Fade, Flip, Slide } from 'react-reveal'
 import undraw1 from '../img/undraw1-removebg-preview.png'
 import undraw2 from '../img/undraw2-removebg-preview.png'
 import undraw3 from '../img/undraw3-removebg-preview.png'

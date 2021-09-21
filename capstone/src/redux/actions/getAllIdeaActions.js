@@ -1,5 +1,15 @@
 import axios from "axios";
-import { GETALLCATEGORY_REQUEST, GETALLIDEA_FAIL, GETALLIDEA_REQUEST, GETALLIDEA_SUCCESS } from "../constants/getAllIdea";
+import {
+    GETALLCATEGORY_REQUEST,
+    GETALLIDEA_FAIL,
+    GETALLIDEA_REQUEST,
+    GETALLIDEA_SUCCESS,
+    GETONEIDEABYID_FAIL,
+    GETONEIDEABYID_REQUEST,
+    GETONEIDEABYID_SUCCESS
+} from "../constants/getAllIdea";
+import { deployLink } from '../constants/config.js';
+
 
 
 export const getAllIdea = (filter) => async (dispatch, getState) => {
@@ -12,7 +22,7 @@ export const getAllIdea = (filter) => async (dispatch, getState) => {
     dispatch({ type: GETALLIDEA_REQUEST });
 
     try {
-        const { data } = await axios.get('http://localhost:3000/allIdeas', {
+        const { data } = await axios.get(`${deployLink}/idea`, {
             headers: {
                 authorization: `Bearer ${token}`,
             }
@@ -22,6 +32,27 @@ export const getAllIdea = (filter) => async (dispatch, getState) => {
     } catch (error) {
         // console.log(error)
         dispatch({ type: GETALLIDEA_FAIL, payload: error });
+    }
+}
+
+export const getOneIdeaById = (id) => async (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.owner.user;
+
+    dispatch({ type: GETONEIDEABYID_REQUEST });
+    // console.log(id, token, 'getOneIdeaById');
+    try {
+        const { data } = await axios.get(`${deployLink}/idea/${id}`, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        });
+        dispatch({ type: GETONEIDEABYID_SUCCESS, payload: data });
+        console.log(data, 'getOneIdeaById success');
+    } catch (error) {
+
+        // console.log(error, 'getOneIdeaById')
+        dispatch({ type: GETONEIDEABYID_FAIL, payload: error });
     }
 }
 
