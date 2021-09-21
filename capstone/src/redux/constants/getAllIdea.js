@@ -6,6 +6,4 @@ export const GETONEIDEABYID_REQUEST = 'getOneIdeaById_request';
 export const GETONEIDEABYID_SUCCESS = 'getOneIdeaById_success';
 export const GETONEIDEABYID_FAIL = 'getOneIdeaById_fail';
 
-export const GETALLCATEGORY_REQUEST = 'getAllCategory_request';
-export const GETALLCATEGORY_SUCCESS = 'getAllCategory_success';
-export const GETALLCATEGORY_FAIL = 'getAllCategory_fail';
+export const GETFILTERCATEGORY = 'getfilterCategory';

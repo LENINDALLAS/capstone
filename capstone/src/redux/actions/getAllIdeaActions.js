@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    // GETALLCATEGORY_REQUEST,
+    GETFILTERCATEGORY,
     GETALLIDEA_FAIL,
     GETALLIDEA_REQUEST,
     GETALLIDEA_SUCCESS,
@@ -56,20 +56,12 @@ export const getOneIdeaById = (id) => async (dispatch, getState) => {
     }
 }
 
-// export const getAllCategory = () => async (dispatch, getState) => {
-//     const state = getState();
-//     const { token } = state.owner.user;
-//     console.log(token, 'get category actions');
-//     dispatch({ type: GETALLCATEGORY_REQUEST });
+export const getIdeaByFilterCategory = (data) => async (dispatch) => {
 
-//     try {
-//         const allCategory = await axios.get('route', {
-//             headers: {
-//                 authorization: `Bearer ${token}`,
-//             }
-//         })
-//         console.log(allCategory, 'get all category actions success')
-//     } catch (error) {
-//         console.log(error)
-//     }
-// };
+    // console.log(data, 'filter category');
+
+
+    dispatch({ type: GETFILTERCATEGORY, payload: data });
+
+
+};

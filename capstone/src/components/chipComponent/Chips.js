@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Chip from '@material-ui/core/Chip';
 // import CancelIcon from '@mui/icons-material/Cancel';
 import { Avatar } from '@material-ui/core';
 import { chipData } from './chipData.js';
-// import { useDispatch } from 'react-redux';
-// import { getAllIdea } from '../../redux/actions/getAllIdeaActions.js';
+import { useDispatch } from 'react-redux';
+import { getIdeaByFilterCategory } from '../../redux/actions/getAllIdeaActions.js';
+
 
 function Chips() {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const [allCategory, setAllCategory] = useState(chipData);
     const [filteredCategory, setFilteredCategory] = useState([]);
 
 
-    // useEffect(() => {
-    //     const filter = filteredCategory.join(',');           Todo: have a separate route as it clears the chip after the dispatch
-    //     if (filter) {
-    //         dispatch(getAllIdea(filter));
-    //     };
-    // }, [filteredCategory, dispatch]);
+    useEffect(() => {
+        // console.log('filter', filteredCategory);
+        if (filteredCategory) {
+            dispatch(getIdeaByFilterCategory(filteredCategory));
+        };
+    }, [filteredCategory]);
 
     const addCategory = (item) => {
         setAllCategory(allCategory.filter((tag) => tag !== item));
