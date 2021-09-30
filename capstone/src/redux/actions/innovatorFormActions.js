@@ -12,14 +12,14 @@ import {
 } from "../constants/innovatorForm";
 import { deployLink } from '../constants/config.js';
 
-
 export const innovatorForm1 = (data) => async (dispatch, getState) => {
     const state = getState();
     const { token } = state.owner.user;
     // console.log(data, token);
     dispatch({ type: INNOVATORFORM1_REQUEST });
+
     try {
-        const idea = await axios.post(`${deployLink}/idea/part1`, data, {   //check
+        const idea = await axios.post(`${deployLink}/idea/part`, data, {   //check
             headers: {
                 authorization: `Bearer ${token}`,
             }
@@ -27,12 +27,11 @@ export const innovatorForm1 = (data) => async (dispatch, getState) => {
         )
         // console.log(idea.data, 'form1')
         dispatch({ type: INNOVATORFORM1_SUCCESS, payload: idea.data });
-        alert('First part submitted successfully continue with part 2');
+        // alert('First part submitted successfully continue with part 2');
     } catch (error) {
         // console.log(error, 'form1')
         dispatch({ type: INNOVATORFORM1_FAIL, payload: error });
-        alert('Form submission not successful try again');
-
+        // alert('Form submission not successful try again');
     }
 }
 

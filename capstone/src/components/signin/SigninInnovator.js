@@ -58,7 +58,6 @@ function SigninInnovator(props) {
         dispatch(innovatorSignin(data));
     };
 
-
     const userFromReducer = useSelector((state) => state.signinInnovator);
 
     const { user, userError, loading } = userFromReducer

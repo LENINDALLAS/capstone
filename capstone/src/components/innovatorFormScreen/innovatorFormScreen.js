@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Form1 from '../accordian1/Form1.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -11,6 +11,8 @@ import Form3 from '../accordian3/Form3.js';
 import Navbar from '../Navbar/Navbar.js';
 import Footer from '../Footer/Footer.js';
 import { useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,6 +49,25 @@ function InnovatorForm(props) {
     }
     );
     // console.log(ideaId, 'innovatorForm screen ideaid');
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleSnackbar = (value, variant) => {
+        // console.log('from function', value)
+        enqueueSnackbar(value, { variant });
+    };
+
+    const { form1, form1Error } = useSelector((state) => state.innovatorForm1);
+    // console.log('submission', form1, form1Error)
+
+
+
+    useEffect(() => {
+        if (form1) {
+            handleSnackbar('Form 1 submission successful, Continue with part 2', 'success')
+        } else if (form1Error) {
+            handleSnackbar('Form 1 submission unsuccessful, Please try again', 'error')
+        }
+    }, [form1, form1Error]);
 
     const classes = useStyles();
 
