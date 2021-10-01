@@ -50,12 +50,9 @@ export const innovatorForm2 = (data) => async (dispatch, getState) => {
         )
         // console.log(idea.data, 'form2')
         dispatch({ type: INNOVATORFORM2_SUCCESS, payload: idea.data });
-        alert('Second part submitted successfully continue with part 3');
     } catch (error) {
         // console.log(error, 'form2')
         dispatch({ type: INNOVATORFORM2_FAIL, payload: error });
-        alert('Form submission not successful try again');
-
     }
 }
 
@@ -73,10 +70,8 @@ export const innovatorForm3 = (data) => async (dispatch, getState) => {
         )
         // console.log(idea.data, 'form3')
         dispatch({ type: INNOVATORFORM3_SUCCESS, payload: idea.data })
-        alert('Your idea has submitted successfully ');
     } catch (error) {
         // console.log(error, 'form3')
         dispatch({ type: INNOVATORFORM3_FAIL, payload: error });
-        alert('Form submission not successful try again');
     }
 }

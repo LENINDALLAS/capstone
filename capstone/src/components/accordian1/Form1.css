@@ -46,6 +46,6 @@
 .formButton {
   position: absolute;
   left: 80%;
-  padding: 1px !important;
+  padding: 5px !important;
   width: 20%;
 }

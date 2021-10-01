@@ -39,7 +39,7 @@
 
 .navigation_button {
   background-color: #7d2ae8 !important;
-  font-size: 1.2rem !important;
+  /* font-size: 1.2rem !important; */
   margin: 10 auto !important;
   transition: 0.7s !important;
   margin-right: 30px !important;

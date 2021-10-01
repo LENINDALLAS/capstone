@@ -57,17 +57,35 @@ function InnovatorForm(props) {
     };
 
     const { form1, form1Error } = useSelector((state) => state.innovatorForm1);
+    const { form2, form2Error } = useSelector((state) => state.innovatorForm2);
+    const { form3, form3Error } = useSelector((state) => state.innovatorForm3);
     // console.log('submission', form1, form1Error)
 
 
 
     useEffect(() => {
-        if (form1) {
-            handleSnackbar('Form 1 submission successful, Continue with part 2', 'success')
-        } else if (form1Error) {
-            handleSnackbar('Form 1 submission unsuccessful, Please try again', 'error')
+        if (form3) {
+            handleSnackbar('Your idea has been submitted successfully', 'success');
+            return;
+        } else if (form3Error) {
+            handleSnackbar('Form 3 submission unsuccessful, Please try again', 'error');
+            return;
         }
-    }, [form1, form1Error]);
+        if (form2) {
+            handleSnackbar('Form 2 submission successful, Continue with part 3', 'success');
+            return;
+        } else if (form3Error) {
+            handleSnackbar('Form 2 submission unsuccessful, Please try again', 'error');
+            return;
+        }
+        if (form1) {
+            handleSnackbar('Form 1 submission successful, Continue with part 2', 'success');
+            return;
+        } else if (form1Error) {
+            handleSnackbar('Form 1 submission unsuccessful, Please try again', 'error');
+            return;
+        }
+    }, [form1, form2, form3, form1Error, form2Error, form3Error]);
 
     const classes = useStyles();
 
