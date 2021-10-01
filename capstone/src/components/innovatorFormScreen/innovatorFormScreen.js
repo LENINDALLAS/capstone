@@ -59,13 +59,13 @@ function InnovatorForm(props) {
     const { form1, form1Error } = useSelector((state) => state.innovatorForm1);
     const { form2, form2Error } = useSelector((state) => state.innovatorForm2);
     const { form3, form3Error } = useSelector((state) => state.innovatorForm3);
+
     // console.log('submission', form1, form1Error)
-
-
 
     useEffect(() => {
         if (form3) {
             handleSnackbar('Your idea has been submitted successfully', 'success');
+            props.history.push('/')
             return;
         } else if (form3Error) {
             handleSnackbar('Form 3 submission unsuccessful, Please try again', 'error');

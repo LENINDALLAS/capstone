@@ -15,6 +15,15 @@ import { innovatorSignin } from '../../redux/actions/signinActions';
 import Loading from '../loading/Loading';
 import { useSnackbar } from 'notistack';
 import Navbar from '../Navbar/Navbar';
+import FormControl from '@material-ui/core/FormControl';
+import clsx from 'clsx';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,6 +86,22 @@ function SigninInnovator(props) {
         // eslint-disable-next-line
     }, [user, userError])
 
+    const [values, setValues] = useState({
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
+    });
+
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
 
     if (loading) {
         return (
@@ -110,7 +135,7 @@ function SigninInnovator(props) {
                             />
                         </div>
                         <div className='rowedInput'>
-                            <TextField
+                            {/* <TextField
                                 className={classes.margin}
                                 label="Password"
                                 variant="outlined"
@@ -118,7 +143,29 @@ function SigninInnovator(props) {
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                            />
+                            /> */}
+                            <FormControl variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <OutlinedInput
+                                    id="outlined-adornment-password"
+                                    type={values.showPassword ? 'text' : 'password'}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    labelWidth={70}
+                                />
+                            </FormControl>
 
                         </div>
 

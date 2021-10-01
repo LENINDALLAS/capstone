@@ -19,7 +19,7 @@ export const innovatorForm1 = (data) => async (dispatch, getState) => {
     dispatch({ type: INNOVATORFORM1_REQUEST });
 
     try {
-        const idea = await axios.post(`${deployLink}/idea/part`, data, {   //check
+        const idea = await axios.post(`${deployLink}/idea/part1`, data, {   //check
             headers: {
                 authorization: `Bearer ${token}`,
             }
